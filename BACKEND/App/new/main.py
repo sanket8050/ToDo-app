@@ -18,3 +18,5 @@ async def root():
 @app.get('/todo/')
 async def read_todo():
     return {"todo": "This is a todo"}
+ @app.get('s')
+async def
