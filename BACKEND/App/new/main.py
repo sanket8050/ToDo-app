@@ -6,7 +6,7 @@ from sqlmodel import SQLModel,Field
 #creare Model 
 class Todo(SQLModel):
 
-    bcAJDGx b
+    
 
 
 app = FastAPI()
