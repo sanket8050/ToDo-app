@@ -5,6 +5,9 @@ from sqlmodel import SQLModel,Field
 
 #creare Model 
 class Todo(SQLModel):
+    id : int = Field()
+    content : str = Field()
+    is_completed : bool = Field()
 
     
 
