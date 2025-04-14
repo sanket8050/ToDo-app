@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from sqlmodel import SQLModel,Field
-
+from sqlmodel import SQLModel,Field,create_engine,Session
+from App import setting
 
 
 #creare Model (two types)
@@ -13,8 +13,22 @@ class Todo(SQLModel,table=True):
     is_completed : bool = Field(default=False)
 
     
+connection_string : str = str(setting.Database_url).replace("postgresql" , "postgresql + psycopg")
 
+engine = create_engine(connection_string , connect_args={"sslmode" : "require"},pool_recycle=300,pool_size=10, max_overflow=20)
 
+todo1 : Todo = Todo(content="first task")
+todo2 : Todo = Todo(content="second task")
+
+# session :saperate session for each transaction
+
+session = Session(engine)
+
+# add todos in database
+session.add(todo1)
+session.add(todo2)
+
+SQLModel.metadata.create_all(engine)
 app = FastAPI()
 
 @app.get('/')
