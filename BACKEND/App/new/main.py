@@ -40,7 +40,6 @@ session.close()
 
 SQLModel.metadata.create_all(engine)
 app = FastAPI()
-
 @app.get('/')
 async def root():
     return {"message": "welcome todo Worldfckhdbn "}
